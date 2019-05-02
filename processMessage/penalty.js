@@ -1,7 +1,7 @@
 var Context = require('../Context');
 var service = require('../service');
 
-module.exports = async function (bot, cx, channel, user, text) {
+module.exports = async function (bot, cx, ts, channel, user, text) {
   var msgs = [
     `hey <@${user}>, I have sent a new transaction through TomoWallet.`,
     `ok <@${user}>. Please confirm the transaction, which I have sent you through TomoWallet`,
@@ -9,6 +9,7 @@ module.exports = async function (bot, cx, channel, user, text) {
 
   var response = '';
   var attachments = [];
+  var thread_ts = undefined;
   var typeOfMessage = '';
   var subtypeOfMessage = '';
   var dataContext = cx.dataContext || {};
@@ -46,7 +47,8 @@ module.exports = async function (bot, cx, channel, user, text) {
     attachments.push({
       text: "_Go to profile, click to Edit Profile then update your TomoWallet_",
       color: "#3AA3E3"
-    })
+    });
+    thread_ts = ts;
     isOk = false;
   }
 
@@ -79,6 +81,7 @@ module.exports = async function (bot, cx, channel, user, text) {
 
   return {
     text: response,
-    attachments: attachments
+    attachments: attachments,
+    thread_ts
   }
 }

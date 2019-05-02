@@ -1,7 +1,7 @@
 var Context = require('../Context');
 var serivce = require('../service');
 
-module.exports = async function (bot, cx, channel, user, text) {
+module.exports = async function (bot, cx, channel, ts, user, text) {
   var msgs = [
     `hey <@${user}>, I have sent a new transaction through TomoWallet.`,
     `ok <@${user}>. Please confirm the transaction, which I have sent you through TomoWallet`,
@@ -60,6 +60,7 @@ module.exports = async function (bot, cx, channel, user, text) {
       text: "Go to profile, click to Edit Profile then update your TomoWallet ",
       color: "#FF3B30"
     })
+    thread_ts = ts;
     finishConversation = true;
     isOk = false;
   }
@@ -82,6 +83,7 @@ module.exports = async function (bot, cx, channel, user, text) {
         text: `_<@${user}>, Wait for ${listDontHaveAddress} ${count > 1 ? 'update' : 'updates'} TomoWallet then try again, please_`,
         color: "good"
       });
+      thread_ts = ts;
       finishConversation = true;
       isOk = false;
     }
@@ -107,6 +109,7 @@ module.exports = async function (bot, cx, channel, user, text) {
     attachments.push({ color: "#FF3B30", text: `*Amount:* ${dataContext.amount} TOMO` });
     attachments.push({ color: "good", text: `*${dataContext.recipents.length == 1 ? 'Recipient' : 'Recipients'}: * ${users.join(', ')}` });
     finishConversation = true;
+    thread_ts = ts;
   }
 
   if (finishConversation) {
@@ -123,6 +126,7 @@ module.exports = async function (bot, cx, channel, user, text) {
 
   return {
     text: response,
-    attachments: attachments
+    attachments: attachments,
+    thread_ts
   }
 }

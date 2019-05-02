@@ -126,10 +126,10 @@ async function processMessageWith(message, channel, user, text) {
     return await ProcessMessage.SayHi(bot, cx, user, text);
   }
   else if (Context.isPenalty(text) || cx.context == 'PENALTY') {
-    return await ProcessMessage.Penalty(bot, cx, channel, user, text);
+    return await ProcessMessage.Penalty(bot, cx, message.ts, channel, user, text);
   }
   else if (Context.isTranferTomo(text) || cx.context == 'TRANSFER_TOMO') {
-    return await ProcessMessage.Transaction(bot, cx, channel, user, text);
+    return await ProcessMessage.Transaction(bot, cx, message.ts, channel, user, text);
   }
   else {
     var userDetail = await bot.getUserById(user);
@@ -146,9 +146,9 @@ async function processMessageWith(message, channel, user, text) {
 
 async function sendResponse(message, response) {
   var channel = await bot.getChannelById(message.channel);
-  if (message.thread_ts) {
+  if (message.thread_ts || response.thread_ts) {
     bot.postMessageToChannel(channel.name, response.text, {
-      thread_ts: message.thread_ts,
+      thread_ts: message.thread_ts || response.thread_ts,
       "attachments": response.attachments
     });
   }
