@@ -55,11 +55,12 @@ module.exports = async function (bot, cx, channel, user, text) {
     subtypeOfMessage = 'RECIPIENT';
   }
   else if (!await Context.haveAddress(bot, sender)) {
-    response = `<@${user}>, I cannot find your *TomoWallet* in your profile`;
+    response = `<@${user}>, I cannot find your *TomoWallet* in your profile. Update *TomoWallet* in your profile then try again please`;
     attachments.push({
       text: "Go to profile, click to Edit Profile then update your TomoWallet ",
       color: "#FF3B30"
     })
+    finishConversation = true;
     isOk = false;
   }
   else {
@@ -80,7 +81,8 @@ module.exports = async function (bot, cx, channel, user, text) {
       attachments.push({
         text: `_<@${user}>, Wait for ${listDontHaveAddress} ${count > 1 ? 'update' : 'updates'} TomoWallet then try again, please_`,
         color: "good"
-      })
+      });
+      finishConversation = true;
       isOk = false;
     }
   }
