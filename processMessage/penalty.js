@@ -65,6 +65,7 @@ module.exports = async function (bot, cx, ts, channel, user, text) {
     attachments.push({ color: "good", text: `Cash Penalty | 0x48Aa20c9135a10544c57F4de7a80A6209152b98D` });
     attachments.push({ color: "#03a9f4", text: `<@UGG4AQZ4H>, check this transaction after 2 minutes please` });
     finishConversation = true;
+    thread_ts = ts;
   }
 
   if (finishConversation) {

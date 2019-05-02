@@ -1,7 +1,7 @@
 var Context = require('../Context');
 var serivce = require('../service');
 
-module.exports = async function (bot, cx, channel, ts, user, text) {
+module.exports = async function (bot, cx, ts, channel, user, text) {
   var msgs = [
     `hey <@${user}>, I have sent a new transaction through TomoWallet.`,
     `ok <@${user}>. Please confirm the transaction, which I have sent you through TomoWallet`,
