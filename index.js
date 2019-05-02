@@ -102,10 +102,15 @@ async function processMessageWith(message, channel, user, text) {
       if (ids[ts]) {
         ts = ids[ts];
       }
-      var channelDetail = await bot.getChannelById(ts.split('|')[0]);
-      bot.postMessageToChannel(channelDetail.name, msg, {
-        thread_ts: ts.split('|')[1]
-      });
+      if (ts.includes('|')) {
+        var channelDetail = await bot.getChannelById(ts.split('|')[0]);
+        bot.postMessageToChannel(channelDetail.name, msg, {
+          thread_ts: ts.split('|')[1]
+        });
+      }
+      else {
+        bot.postMessageToChannel(ts, msg);
+      }
     }
     return null;
   }
