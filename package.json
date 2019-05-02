@@ -1,0 +1,22 @@
+{
+  "name": "slack-tomo-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "slackbots": "^1.2.0",
+    "web3": "^1.0.0-beta.53"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
