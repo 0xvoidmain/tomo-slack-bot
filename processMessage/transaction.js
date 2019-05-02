@@ -57,23 +57,29 @@ module.exports = async function (bot, cx, channel, user, text) {
   else if (!await Context.haveAddress(bot, sender)) {
     response = `<@${user}>, I cannot find your *TomoWallet* in your profile`;
     attachments.push({
-      text: "_Go to profile, click to Edit Profile then update your TomoWallet_",
-      color: "#3AA3E3"
+      text: "Go to profile, click to Edit Profile then update your TomoWallet ",
+      color: "#FF3B30"
     })
     isOk = false;
   }
   else {
     var listDontHaveAddress = [];
+    var count = 0;
     for (var i = 0; i < dataContext.recipents.length; i++) {
       if (!await Context.haveAddress(bot, dataContext.recipents[i]))
         listDontHaveAddress.push(dataContext.recipents[i]);
+        count++;
     }
     if (listDontHaveAddress.length > 0) {
       listDontHaveAddress = listDontHaveAddress.map(e => `<@${e}>`).join(', ');
-      response = `${listDontHaveAddress}, I cannot find your *TomoWallet* in your profile. I will send directly a question to you, answer me as soon as posible please.`;
+      response = `${listDontHaveAddress}, I cannot find your *TomoWallet* in your profile. Please update TomoWallet in your profile.`;
       attachments.push({
-        text: "_Go to profile, click to Edit Profile then update your TomoWallet_",
-        color: "#3AA3E3"
+        text: "Go to profile, click to Edit Profile then update your TomoWallet",
+        color: "#FF3B30"
+      })
+      attachments.push({
+        text: `_<@${user}>, Wait for ${listDontHaveAddress} ${count > 1 ? 'update' : 'updates'} TomoWallet then try again, please_`,
+        color: "good"
       })
       isOk = false;
     }
