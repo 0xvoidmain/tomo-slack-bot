@@ -67,7 +67,9 @@ module.exports = {
       ['chuyển ', ' tới '],
       ['chuyển ', ' cho '],
       ['tip ', ' to '],
-      ['tip ', ' cho ']
+      ['tip ', ' cho '],
+      ['tip ', ' <@', 'tomo'],
+      ['tip ', ' <@', 'TOMO'],
     ];
 
     if (!s.includes('tomo')) return false;
