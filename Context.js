@@ -148,7 +148,7 @@ module.exports = {
     var result = [];
     for (var i = 0; i < words.length; i++) {
       var w = words[i];
-      if (w == 'to' || w == 'cho' || w == 'tới') {
+      if (w == 'to' || w == 'cho' || w == 'tới' || w == 'tip') {
         for (var j = i + 1; j < words.length; j++) {
           var r = words[j];
           var recipents = getTextBetween(r, '<@', '>');
@@ -166,7 +166,8 @@ module.exports = {
     var result = 0;
     for (var i = 0; i < words.length; i++) {
       var w = words[i];
-      if (w == 'transfer' || w == 'send' || w == 'gửi' || w == 'chuyển' || w == 'tip' || w == 'nộp' || w == 'đóng') {
+      if (w == 'transfer' || w == 'send' || w == 'gửi' ||
+        w == 'chuyển' || w == 'tip' || w == 'nộp' || w == 'đóng') {
         for (var j = i + 1; j < words.length; j++) {
           var a = words[j];
           var nextW = words[j + 1];
