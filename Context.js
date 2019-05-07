@@ -66,7 +66,8 @@ module.exports = {
       ['gửi ', ' tới '],
       ['chuyển ', ' tới '],
       ['chuyển ', ' cho '],
-      ['tip ', ' to ']
+      ['tip ', ' to '],
+      ['tip ', ' cho ']
     ];
 
     if (!s.includes('tomo')) return false;
