@@ -19,6 +19,7 @@ module.exports = async function (bot, cx, ts, channel, user, text) {
   var recipents = [];
   var amount = 0;
   var isOk = true;
+  var thread_ts = undefined;
 
   if (Context.isAnswerQuestion(cx)) {
     var question = cx.messages[cx.messages.length - 2];
